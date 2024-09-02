@@ -29,7 +29,8 @@ input{
     background: transparent;
     font-size: 50px;
     text-align: right;
-    cursor:pointer
+    cursor:pointer;
+    color: white;
 }
 input::placeholder{
     color: white;
@@ -46,4 +47,10 @@ button{
     box-shadow:8px 10px 15px rgba(201, 247, 141, 0.1);
     cursor: pointer;
     
+}
+.eqlbtn{
+    background-color: #e16c0c
+}
+.operator{
+    color: rgb(58, 212, 58);
 }
