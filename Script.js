@@ -1,6 +1,4 @@
-let input = document.getElementById('inputBox').addEventListener("keydown",function(event){
-    event.preventDefault();
-});
+let input = document.getElementById('inputBox');
 let buttons = document.querySelectorAll('button');
 let string = "";
 let arr = Array.from(buttons);
