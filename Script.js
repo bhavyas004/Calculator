@@ -5,7 +5,16 @@ let arr = Array.from(buttons);
 let operators = ['+','-','*','/','%'];
 arr.forEach(button =>{
     button.addEventListener('click',(e)=>{
-        if(e.target.innerHTML == '+'){
+        if(string.length == 0){
+            if(operators.includes(e.target.innerHTML)){
+                string = '';
+            }
+            else{
+                string += e.target.innerHTML;  
+            }
+            input.value = string;
+        }
+        else if(e.target.innerHTML == '+'){
             let str = string.slice(-1);
             if(operators.includes(str)){
                 string = string.slice(0,-1);
@@ -48,7 +57,13 @@ arr.forEach(button =>{
             input.value = string;
         }
        else if(e.target.innerHTML == '='){
-        string = eval(string);
+        function evaluateExpression(expression) {
+            expression = expression.replace(/\d+/g, function(match) {
+                return parseInt(match, 10); 
+            });
+            return eval(expression);
+        }
+        string = evaluateExpression(string);
         input.value = string;
        } 
        else if(e.target.innerHTML == "AC"){
