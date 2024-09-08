@@ -23,9 +23,11 @@ arr.forEach(button =>{
         }
         else if(e.target.innerHTML == '*'){
             let str = string.slice(-1);
-            if(operators.includes(str) && str != '*'){
+            let str1 = string.slice(-2);
+            if((operators.includes(str) && str != '*')||str1=='**'){
                 string = string.slice(0,-1);
             } 
+
             string += e.target.innerHTML;
             input.value = string;
         }
