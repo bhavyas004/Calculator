@@ -3,10 +3,11 @@ let buttons = document.querySelectorAll('button');
 let string = "";
 let arr = Array.from(buttons);
 let operators = ['+','-','*','/','%'];
+let isResult = false;
 arr.forEach(button =>{
     button.addEventListener('click',(e)=>{
         if(string.length == 0){
-            if(operators.includes(e.target.innerHTML)){
+            if(operators.includes(e.target.innerHTML)||e.target.innerHTML == 'AC'||e.target.innerHTML == "DEL"){
                 string = '';
             }
             else{
@@ -65,6 +66,8 @@ arr.forEach(button =>{
         }
         string = evaluateExpression(string);
         input.value = string;
+        isResult = true;
+
        } 
        else if(e.target.innerHTML == "AC"){
         string = "";
