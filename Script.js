@@ -80,10 +80,14 @@ arr.forEach(button => {
             input.value = string;
         }
         else if (e.target.innerHTML == '.') {
+            let str3 = string.slice(-1);
             let parts = string.split(/[\+\-\*\/]/);
             let lastNumber = parts[parts.length - 1];
             if (lastNumber.includes('.')) {
                 return;
+            }
+            else if(operators.includes(str3)){
+                string+=0;
             }
             string+=e.target.innerHTML;
             input.value = string;
