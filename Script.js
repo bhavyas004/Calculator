@@ -6,24 +6,36 @@ let operators = ['+', '-', '*', '/', '%'];
 let isResult = false;
 arr.forEach(button => {
     button.addEventListener('click', (e) => {
-        if(isResult && operators.includes(e.target.innerHTML)){
-            string += e.target.innerHTML;
-            input.value = string;
-            isResult = false;
-        }
-        else if (isResult && e.target.innerHTML != "DEL" && e.target.innerHTML != "AC") {
-            string = e.target.innerHTML; 
-            input.value = string;
-            isResult = false; 
-        }
-        else if (string.length == 0) {
-            if (operators.includes(e.target.innerHTML) || e.target.innerHTML == 'AC' || e.target.innerHTML == "DEL") {
+        if (string.length == 0) {
+            if (operators.includes(e.target.innerHTML) || e.target.innerHTML == 'AC' || e.target.innerHTML == "DEL"||e.target.innerHTML == '=') {
                 string = '';
+            }
+            else if(e.target.innerHTML == '.'){
+                string = '0.'
             }
             else {
                 string += e.target.innerHTML;
             }
             input.value = string;
+        }
+        else if(isResult && operators.includes(e.target.innerHTML)){
+            string += e.target.innerHTML;
+            input.value = string;
+            isResult = false;
+        }
+        else if (isResult && e.target.innerHTML != "DEL" && e.target.innerHTML != "AC" && e.target.innerHTML != '=' && e.target.innerHTML!='.') {
+            string = e.target.innerHTML; 
+            input.value = string;
+            isResult = false; 
+        }
+        else if(isResult && e.target.innerHTML == '='){
+            input.value = string;
+            isResult = false;
+        }
+        else if(isResult && e.target.innerHTML == '.'){
+            string = '0.'
+            input.value = string;
+            isResult = false;
         }
         else if (e.target.innerHTML == '+') {
             let str = string.slice(-1);
@@ -67,17 +79,27 @@ arr.forEach(button => {
             string += e.target.innerHTML;
             input.value = string;
         }
+        else if (e.target.innerHTML == '.') {
+            let parts = string.split(/[\+\-\*\/]/);
+            let lastNumber = parts[parts.length - 1];
+            if (lastNumber.includes('.')) {
+                return;
+            }
+            string+=e.target.innerHTML;
+            input.value = string;
+        }
         else if (e.target.innerHTML == '=') {
             function evaluateExpression(expression) {
                 expression = expression.replace(/\d+/g, function (match) {
                     return parseInt(match, 10);
                 });
-                return eval(expression);
+                let exp = eval(expression);
+                exp = parseFloat(exp.toFixed(13))
+                return exp;
             }
             string = evaluateExpression(string);
             input.value = string;
             isResult = true;
-
         }
         else if (e.target.innerHTML == "AC") {
             string = "";
