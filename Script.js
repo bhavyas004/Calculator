@@ -1,10 +1,13 @@
 let input = document.getElementById('inputBox');
+let result = document.getElementById('resultBox')
 let buttons = document.querySelectorAll('button');
 let string = "";
+let res = "";
 let arr = Array.from(buttons);
 let operators = ['+', '-', '*', '/', '%'];
+let nums = ['0','1','2','3','4','5','6','7','8','9'];
 let isResult = false;
-arr.forEach(button => {
+arr.forEach(button => {  
     button.addEventListener('click', (e) => {
         if (string.length == 0) {
             if (operators.includes(e.target.innerHTML) || e.target.innerHTML == 'AC' || e.target.innerHTML == "DEL"||e.target.innerHTML == '=') {
@@ -19,22 +22,30 @@ arr.forEach(button => {
             input.value = string;
         }
         else if(isResult && operators.includes(e.target.innerHTML)){
-            string += e.target.innerHTML;
-            input.value = string;
+            res += e.target.innerHTML;
+            string = res;
+            input.value = res;
             isResult = false;
         }
-        else if (isResult && e.target.innerHTML != "DEL" && e.target.innerHTML != "AC" && e.target.innerHTML != '=' && e.target.innerHTML!='.') {
+        else if (isResult && nums.includes(e.target.innerHTML)) {
             string = e.target.innerHTML; 
             input.value = string;
             isResult = false; 
         }
-        else if(isResult && e.target.innerHTML == '='){
-            input.value = string;
-            isResult = false;
-        }
         else if(isResult && e.target.innerHTML == '.'){
             string = '0.'
             input.value = string;
+            isResult = false;
+        }
+        else if(isResult && e.target.innerHTML == 'DEL'){
+            string = string.slice(0,-1);
+            input.value = string;
+            isResult = false;
+        }
+        else if(isResult && e.target.innerHTML == 'AC'){
+            string = '';
+            input.value = string;
+            result.value = string;
             isResult = false;
         }
         else if (e.target.innerHTML == '+') {
@@ -101,13 +112,14 @@ arr.forEach(button => {
                 exp = parseFloat(exp.toFixed(13))
                 return exp;
             }
-            string = evaluateExpression(string);
-            input.value = string;
+            res = evaluateExpression(string);
+            result.value = res;
             isResult = true;
         }
         else if (e.target.innerHTML == "AC") {
             string = "";
             input.value = string;
+            result.value = string;
         }
         else if (e.target.innerHTML == "DEL") {
             string = string.substring(0, string.length - 1);
