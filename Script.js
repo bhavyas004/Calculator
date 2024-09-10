@@ -30,6 +30,7 @@ arr.forEach(button => {
         else if (isResult && nums.includes(e.target.innerHTML)) {
             string = e.target.innerHTML; 
             input.value = string;
+            result.value = "";
             isResult = false; 
         }
         else if(isResult && e.target.innerHTML == '.'){
@@ -40,6 +41,7 @@ arr.forEach(button => {
         else if(isResult && e.target.innerHTML == 'DEL'){
             string = string.slice(0,-1);
             input.value = string;
+            result.value = ''
             isResult = false;
         }
         else if(isResult && e.target.innerHTML == 'AC'){
@@ -51,7 +53,12 @@ arr.forEach(button => {
         else if (e.target.innerHTML == '+') {
             let str = string.slice(-1);
             if (operators.includes(str)) {
-                string = string.slice(0, -1);
+                let str2 = string.slice(-2,-1);
+                if(operators.includes(str2)){
+                    string = string.slice(0, -2);
+                } else{
+                    string = string.slice(0, -1);
+                }
             }
             string += e.target.innerHTML;
             input.value = string;
@@ -66,9 +73,13 @@ arr.forEach(button => {
         }
         else if (e.target.innerHTML == '*') {
             let str = string.slice(-1);
-            let str1 = string.slice(-2);
-            if ((operators.includes(str) && str != '*') || str1 == '**') {
-                string = string.slice(0, -1);
+            if (operators.includes(str)) {
+                let str2 = string.slice(-2,-1);
+                if (operators.includes(str2)){
+                    string = string.slice(0, -2);
+                } else{
+                    string = string.slice(0, -1);
+                }
             }
 
             string += e.target.innerHTML;
@@ -77,7 +88,12 @@ arr.forEach(button => {
         else if (e.target.innerHTML == '/') {
             let str = string.slice(-1);
             if (operators.includes(str)) {
-                string = string.slice(0, -1);
+                let str2 = string.slice(-2,-1);
+                if(operators.includes(str2)){
+                    string = string.slice(0, -2);
+                } else{
+                    string = string.slice(0, -1);
+                }
             }
             string += e.target.innerHTML;
             input.value = string;
@@ -85,7 +101,12 @@ arr.forEach(button => {
         else if (e.target.innerHTML == '%') {
             let str = string.slice(-1);
             if (operators.includes(str)) {
-                string = string.slice(0, -1);
+                let str2 = string.slice(-2,-1);
+                if(operators.includes(str2)){
+                    string = string.slice(0, -2);
+                } else{
+                    string = string.slice(0, -1);
+                }
             }
             string += e.target.innerHTML;
             input.value = string;
