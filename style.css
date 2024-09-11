@@ -22,7 +22,7 @@ body{
     text-align: center;
 }
 input{
-    height : 100%;
+    width:80%;
     border:none;
     padding:12px;
     margin:15px;
@@ -43,7 +43,7 @@ button{
     margin:10px;
     border-radius: 35px;
     background: transparent;
-    color:#ffffff;
+    color:white;
     font-size:15px;
     box-shadow:8px 10px 15px rgba(201, 247, 141, 0.1);
     cursor: pointer;
