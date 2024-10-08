@@ -52,7 +52,7 @@ arr.forEach(button => {
         }
         else if (e.target.innerHTML == '+') {
             let str = string.slice(-1);
-            if (operators.includes(str)) {
+            if (operators.includes(str)&&string.length == 1) {
                 let str2 = string.slice(-2,-1);
                 if(operators.includes(str2)){
                     string = string.slice(0, -2);
