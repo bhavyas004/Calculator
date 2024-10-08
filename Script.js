@@ -10,7 +10,7 @@ let isResult = false;
 arr.forEach(button => {  
     button.addEventListener('click', (e) => {
         if (string.length == 0) {
-            if (operators.includes(e.target.innerHTML) || e.target.innerHTML == 'AC' || e.target.innerHTML == "DEL"||e.target.innerHTML == '=') {
+            if ((operators.includes(e.target.innerHTML) && e.target.innerHTML!= '-') || e.target.innerHTML == 'AC' || e.target.innerHTML == "DEL"||e.target.innerHTML == '=') {
                 string = '';
             }
             else if(e.target.innerHTML == '.'){
