@@ -96,6 +96,9 @@ arr.forEach(button => {
 });
 
 function handleOperator(operator) {
+    if (string.length === 1 && string === '-') {
+        return;
+    }
     let lastChar = string.slice(-1);
     if ((operator === '-' && ['*', '/', '%'].includes(lastChar))) {
         string += operator;
