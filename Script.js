@@ -97,8 +97,6 @@ arr.forEach(button => {
 
 function handleOperator(operator) {
     let lastChar = string.slice(-1);
-
-    // Allow '-' after operators * / % for negative numbers
     if ((operator === '-' && ['*', '/', '%'].includes(lastChar))) {
         string += operator;
         input.value = string;
